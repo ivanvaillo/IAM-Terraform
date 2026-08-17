@@ -90,7 +90,15 @@ IAM-Terraform/
 
 ├── diagrams/
 
-├── \*.tf
+├── attachments.tf
+
+├── main.tf
+
+├── memberships.tf
+
+├── policies.tf
+
+├── users.tf
 
 └── README.md
 
