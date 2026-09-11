@@ -255,18 +255,13 @@ Estas limitaciones no invalidan el aprendizaje: el proyecto demuestra el modelad
 
 ---
 
-## 9. Qué demuestra este proyecto
+## 9. Conclusiones
 
-1. Separar identidad (users/groups) de autorización (policies)
-2. Aplicar mínimo privilegio en S3 con recursos concretos por departamento
-3. Usar Terraform (`for_each`, locals, attachments) para IAM reproducible
-4. Documentar evidencias de `plan`/`apply` y validación CLI
-5. Explicar con claridad la diferencia entre laboratorio local y AWS real
+Este proyecto permite demostrar el modelado de identidades y permisos IAM con Terraform en un escenario de varios departamentos:
 
-### Defensa rápida en entrevista
+- separación de acceso por grupos y políticas
+- mínimo privilegio aplicado a buckets S3 de negocio
+- automatización reproducible con Terraform (`for_each`, locals, attachments)
+- evidencias de `plan` / `apply` y validación con AWS CLI en entorno local
 
-| Pregunta | Respuesta alineada con el repo |
-| --- | --- |
-| ¿Por qué groups y no roles? | El alcance del lab era users/groups/policies. Roles con AssumeRole serían la evolución natural para acceso temporal o servicios. |
-| ¿Dónde está el least privilege? | Sobre todo en las tres policies S3 por bucket. IT y Auditoría son más amplias y son candidatas claras a endurecer en producción. |
-| ¿Cómo lo validaste? | `terraform plan/apply` (35 recursos) + AWS CLI contra Floci + capturas en `screenshots/` y `validation/` |
+El laboratorio utiliza un emulador local (Floci) para evitar costes de cuenta. La documentación deja claro el alcance real: users, groups y policies (sin IAM Roles), y las limitaciones propias de un entorno de pruebas frente a AWS real.
