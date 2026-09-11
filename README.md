@@ -1,118 +1,55 @@
-\# IAM Access Control with Terraform
+# IAM Access Control with Terraform
 
+Control de acceso IAM para una aseguradora ficticia, definido como Infrastructure as Code con Terraform y validado en un laboratorio local (Floci).
 
+**Documentación completa:** [documentation/IAM-Access-Control-Documentacion.md](documentation/IAM-Access-Control-Documentacion.md)
 
-Proyecto de implementación de un sistema de \*\*Identity and Access Management (IAM)\*\* para una empresa ficticia del sector asegurador, utilizando \*\*Terraform\*\* como Infrastructure as Code.
+## Highlights
 
+- 5 departamentos, 5 grupos IAM, 5 políticas y 10 usuarios de ejemplo
+- Separación de permisos por recurso (buckets S3 de negocio, soporte EC2/monitorización y auditoría)
+- 35 recursos Terraform desplegados de forma reproducible
+- Evidencias de `plan` / `apply` y validación con AWS CLI contra emulador local
 
+## Stack
 
-\## Objetivo
+Terraform · AWS IAM · AWS CLI · Docker · Floci · JSON
 
-
-
-Diseñar una estructura de control de acceso basada en \*\*usuarios, grupos y políticas IAM\*\*, aplicando el principio de mínimo privilegio.
-
-
-
-\## Tecnologías
-
-
-
-\* AWS IAM
-
-\* Terraform
-
-\* AWS CLI
-
-\* Docker
-
-\* Floci
-
-\* JSON
-
-
-
-\## Implementación
-
-
-
-Terraform se utiliza para definir y gestionar los recursos IAM y sus relaciones.
-
-
-
-Las políticas de acceso se han definido mediante archivos JSON independientes.
-
-
-
-El proyecto se ha probado en un entorno local mediante \*\*Floci y Docker\*\*, utilizando un emulador de servicios AWS para realizar las pruebas de forma local.
-
-
-
-\## Validación
-
-
-
-La infraestructura se ha inicializado, planificado y desplegado mediante Terraform.
-
-
-
-```bash
-
-terraform init
-
-terraform plan
-
-terraform apply
-
-```
-
-
-
-El plan final mostró \*\*35 recursos a crear\*\*, y la configuración fue aplicada correctamente.
-
-
-
-\## Estructura
-
-
+## Modelo de acceso
 
 ```text
-
-IAM-Terraform/
-
-├── policies/
-
-├── validation/
-
-├── documentation/
-
-├── screenshots/
-
-├── diagrams/
-
-├── attachments.tf
-
-├── main.tf
-
-├── memberships.tf
-
-├── policies.tf
-
-├── users.tf
-
-└── README.md
-
+Usuario IAM  ->  Grupo IAM  ->  Política IAM  ->  Acciones permitidas
 ```
 
+Este laboratorio se centra en **users, groups y policies**. No provisiona IAM Roles.
 
+## Estructura
 
-\## Evidencias
+```text
+main.tf            Provider local + grupos
+policies.tf        Políticas aplicadas por Terraform
+attachments.tf     Asociación grupo-política
+users.tf           Usuarios
+memberships.tf     Membresías
+policies/          JSON de referencia por departamento
+diagrams/          Diagramas
+screenshots/       Evidencias del despliegue
+validation/        Evidencias de comprobación
+documentation/     Documentación técnica completa
+```
 
+## Quick start (laboratorio local)
 
+```bash
+terraform init
+terraform plan
+terraform apply
+```
 
-El repositorio incluye capturas de la implementación y validación, además de los diagramas y la documentación técnica del proyecto.
+Requisito: emulador IAM disponible en `http://localhost:4566` (Floci).
 
+## Lectura recomendada
 
-
-
-
+1. Abre la [documentación completa](documentation/IAM-Access-Control-Documentacion.md)
+2. Revisa la matriz departamento / grupo / policy / usuarios
+3. Sigue las capturas de `screenshots/` y `validation/`
