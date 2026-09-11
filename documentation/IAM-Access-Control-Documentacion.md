@@ -103,8 +103,8 @@ El laboratorio se centra en el patrón clásico **users + groups + policies**. E
 | Departamento | Grupo IAM | Policy (`policies.tf`) | JSON (`policies/`) | Usuarios | Recurso | Acciones |
 | --- | --- | --- | --- | --- | --- | --- |
 | Administración y Finanzas | `Administracion-Finanzas` | `Administracion-Finanzas-Policy` | `administration-finance-policy.json` | Carlos, Roberto | `insurance-finance-data` | `s3:ListBucket`, `s3:GetObject`, `s3:PutObject` |
-| Ventas | `Ventas` | `Ventas-Policy` | `sales-policy.json` | Leandro, Beth | `insurance-sales-data` | mismo patrón S3 |
-| Atención al Cliente | `Atencion-Cliente` | `Atencion-Cliente-Policy` | `customer-service-policy.json` | Petra, Anastasia | `insurance-customer-data` | mismo patrón S3 |
+| Ventas | `Ventas` | `Ventas-Policy` | `sales-policy.json` | Leandro, Beth | `insurance-sales-data` | `s3:ListBucket`, `s3:GetObject`, `s3:PutObject` |
+| Atención al Cliente | `Atencion-Cliente` | `Atencion-Cliente-Policy` | `customer-service-policy.json` | Petra, Anastasia | `insurance-customer-data` | `s3:ListBucket`, `s3:GetObject`, `s3:PutObject` |
 | Soporte IT | `Soporte-IT` | `Soporte-IT-Policy` | `it-service-policy.json` | Javier, Luis | EC2 / CloudWatch / Logs | Describe, Start, Stop + métricas/logs |
 | Auditoría y Compliance | `Auditoria-Compliance` | `Auditoria-Compliance-Policy` | `audit-compliance-policy.json` | Marcos, Mercedes | amplio (`*`) | Get/List IAM, CloudTrail, Describe EC2, lectura S3/CloudWatch |
 
